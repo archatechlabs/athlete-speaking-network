@@ -15,9 +15,9 @@ export default function CTA() {
           viewport={{ once: true }}
           className="text-3xl font-bold leading-tight text-white sm:text-4xl md:text-5xl"
         >
-          Turn Stories into Impact.
+          Turn stories into impact.
           <br />
-          <span className="text-accent">Create Value Together.</span>
+          <span className="text-accent">Build legacy. Create value together.</span>
         </motion.h2>
         <motion.p
           initial={{ opacity: 0, y: 16 }}
@@ -26,8 +26,8 @@ export default function CTA() {
           transition={{ delay: 0.1 }}
           className="mt-6 text-lg text-white/80"
         >
-          Whether you're an athlete ready to share your story or an organization
-          looking for inspiration—we're here to connect you.
+          Organizations book athletes for stages and programs. Athletes monetize speaking, training,
+          mentoring, and content—subscribers learn in the middle.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -36,11 +36,11 @@ export default function CTA() {
           transition={{ delay: 0.2 }}
           className="mt-10 flex flex-wrap items-center justify-center gap-4"
         >
-          <Button variant="primary" href="/dashboard">
-            For athletes
+          <Button variant="primary" href="/apply">
+            Apply as athlete
           </Button>
           <Button variant="secondary" href="/athletes">
-            For organizations
+            Browse marketplace
           </Button>
         </motion.div>
       </div>

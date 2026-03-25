@@ -53,7 +53,7 @@ export default function WatchDetailPage({ params }: Props) {
               </h1>
               {athlete && (
                 <Link
-                  href={`/athletes/${athlete.id}`}
+                  href={`/athletes/${athlete.slug}`}
                   className="mt-3 inline-flex text-lg text-white/75 transition hover:text-white"
                 >
                   {athlete.name}
@@ -73,11 +73,17 @@ export default function WatchDetailPage({ params }: Props) {
 
               <div className="mt-10 flex flex-wrap gap-3">
                 {athlete && (
-                  <Button variant="primary" href={`/book?athlete=${athlete.id}`}>
+                  <Button variant="primary" href={`/book/${athlete.slug}`}>
                     Book this athlete
                   </Button>
                 )}
-                <Button variant="secondary" href="/watch">
+                <Button variant="secondary" href="/training">
+                  Explore training
+                </Button>
+                <Button variant="secondary" href="/dashboard">
+                  Subscribe
+                </Button>
+                <Button variant="ghost" href="/watch">
                   Back to library
                 </Button>
               </div>

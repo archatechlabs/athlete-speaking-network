@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Play, Lock } from "lucide-react";
 import type { ContentItem } from "@/lib/types";
 import { getAthleteById } from "@/lib/mock/athletes";
+import { cn } from "@/lib/cn";
 
 export default function WatchVideoCard({
   item,
@@ -18,7 +19,10 @@ export default function WatchVideoCard({
   return (
     <Link
       href={`/watch/${item.id}`}
-      className={`group relative block w-72 shrink-0 overflow-hidden rounded-xl border border-white/10 bg-white/5 transition duration-300 hover:-translate-y-1 hover:border-accent/35 hover:shadow-glow ${className}`}
+      className={cn(
+        "group relative block w-72 shrink-0 overflow-hidden rounded-xl border border-white/10 bg-white/5 transition duration-300 hover:-translate-y-1 hover:border-accent/35 hover:shadow-glow",
+        className
+      )}
     >
       <div className="relative aspect-video w-full overflow-hidden">
         <Image
@@ -26,7 +30,7 @@ export default function WatchVideoCard({
           alt=""
           fill
           className="object-cover transition duration-500 group-hover:scale-105"
-          sizes="288px"
+          sizes="(max-width: 768px) 100vw, 288px"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-navy/95 via-navy/25 to-transparent" />
         <div className="absolute inset-0 flex items-center justify-center">

@@ -7,6 +7,8 @@ import {
   DollarSign,
   Megaphone,
   TrendingUp,
+  GraduationCap,
+  MessageCircle,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import Section from "@/components/ui/Section";
@@ -15,42 +17,54 @@ import Card from "@/components/ui/Card";
 const orgBenefits = [
   {
     icon: Users,
-    title: "Motivate & Inspire Audiences",
+    title: "Bring inspiring athletes in",
     description:
-      "Bring world-class athletes to your events and leave a lasting impact on your team or audience.",
+      "Keynotes, panels, and workshops from voices that have led in the highest-pressure environments.",
   },
   {
     icon: CalendarCheck,
-    title: "Simplified Booking Process",
+    title: "Streamlined booking",
     description:
-      "One platform to discover, request, and confirm speakers. No back-and-forth or hidden fees.",
+      "One request flow for speaking, training, mentoring, appearances, and sponsorship conversations.",
   },
   {
     icon: Video,
-    title: "Stream Exclusive Content",
+    title: "Content for programming",
     description:
-      "Access talks, workshops, and behind-the-scenes content from athletes on demand.",
+      "License talks and series for classrooms, ERGs, and community events—aligned with who you book live.",
+  },
+  {
+    icon: GraduationCap,
+    title: "Mentorship & training access",
+    description:
+      "Book virtual coaching blocks and mentor circles without a separate vendor maze.",
   },
 ];
 
 const athleteBenefits = [
   {
     icon: DollarSign,
-    title: "Get Paid to Speak",
+    title: "Get paid across formats",
     description:
-      "Set your rates and get paid securely. We handle contracts and payments so you can focus on delivering.",
+      "Speaking, training, appearances, sponsorships, and subscriptions—structured offers, one profile.",
   },
   {
     icon: Megaphone,
-    title: "Build Your Brand",
+    title: "Control your brand",
     description:
-      "Reach new audiences and grow your profile through events and streaming content.",
+      "Verification, services, pricing ranges, and narrative—all in a premium athlete storefront.",
   },
   {
     icon: TrendingUp,
-    title: "Earn Passive Income",
+    title: "Build legacy & passive income",
     description:
-      "Your recorded talks and courses generate revenue long after the event.",
+      "Publish to Watch, run programs, and prepare for AI-powered archives that compound your reach.",
+  },
+  {
+    icon: MessageCircle,
+    title: "Platform-native comms",
+    description:
+      "Requests, contracts, and messages routed in one place—ready for real CRM and payments.",
   },
 ];
 
@@ -97,9 +111,7 @@ function BenefitColumn({
                 </div>
                 <div>
                   <h4 className="font-semibold text-white">{benefit.title}</h4>
-                  <p className="mt-1 text-sm text-white/70">
-                    {benefit.description}
-                  </p>
+                  <p className="mt-1 text-sm text-white/70">{benefit.description}</p>
                 </div>
               </div>
             </Card>
@@ -114,8 +126,8 @@ export default function Benefits() {
   return (
     <Section id="benefits">
       <div className="grid gap-12 md:grid-cols-2 lg:gap-16">
-        <BenefitColumn title="Benefits for Organizations" items={orgBenefits} />
-        <BenefitColumn title="Benefits for Athletes" items={athleteBenefits} />
+        <BenefitColumn title="Benefits for organizations" items={orgBenefits} />
+        <BenefitColumn title="Benefits for athletes" items={athleteBenefits} />
       </div>
     </Section>
   );

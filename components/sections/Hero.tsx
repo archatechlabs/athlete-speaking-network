@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, Mic2, Sparkles } from "lucide-react";
+import { ArrowRight, Mic2, Play, Sparkles } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -9,6 +9,7 @@ import GlassCard from "@/components/ui/GlassCard";
 import HeroFeaturedSpeakersCarousel from "@/components/speakers/HeroFeaturedSpeakersCarousel";
 import HeroSpeakerSearch from "@/components/speakers/HeroSpeakerSearch";
 import { speakers } from "@/lib/speakers";
+import { athletes, SERVICE_LABELS } from "@/lib/data";
 
 const HERO_IMAGE =
   "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&q=80";
@@ -19,15 +20,21 @@ const stats = [
   { value: "24h", label: "Avg. reply" },
 ];
 
-const partnerMarks = ["ESPN", "Nike", "Deloitte", "NCAA", "State Farm", "Teamworks"];
+const money = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+  maximumFractionDigits: 0,
+});
 
 export default function Hero() {
+  const spot = athletes[0];
+  const previewId = spot.contentIds[0];
+
   return (
     <section
       id="hero"
       className="relative min-h-[92dvh] min-h-[92vh] overflow-hidden pt-[calc(6rem+env(safe-area-inset-top,0px))] md:min-h-screen md:pt-[calc(7rem+env(safe-area-inset-top,0px))]"
     >
-      {/* Ambient layers */}
       <div className="absolute inset-0 bg-hero-pattern" />
       <div className="pointer-events-none absolute -left-32 top-1/4 h-96 w-96 rounded-full bg-accent/20 blur-[120px]" />
       <div className="pointer-events-none absolute bottom-0 right-0 h-[28rem] w-[28rem] rounded-full bg-accent/10 blur-[100px]" />
@@ -62,7 +69,7 @@ export default function Hero() {
               className="inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-white/90 backdrop-blur-md sm:text-sm"
             >
               <Sparkles className="h-3.5 w-3.5 text-accent" aria-hidden />
-              Bookings + streaming, one network
+              Athlete engagement platform
             </motion.div>
 
             <div className="mt-6 grid gap-4 sm:grid-cols-2 sm:gap-3">
@@ -76,7 +83,7 @@ export default function Hero() {
                     Organizations
                   </p>
                   <h2 className="mt-2 text-xl font-bold leading-snug text-white sm:text-2xl">
-                    Book athletes who inspire real change
+                    Book athletes for impact
                   </h2>
                 </GlassCard>
               </motion.div>
@@ -87,10 +94,10 @@ export default function Hero() {
               >
                 <GlassCard hover className="p-5 sm:p-6">
                   <p className="text-xs font-semibold uppercase tracking-wider text-accent">
-                    Fans &amp; teams
+                    Subscribers &amp; fans
                   </p>
                   <h2 className="mt-2 text-xl font-bold leading-snug text-white sm:text-2xl">
-                    Learn from athletes anytime
+                    Watch and learn anytime
                   </h2>
                 </GlassCard>
               </motion.div>
@@ -102,41 +109,94 @@ export default function Hero() {
               transition={{ duration: 0.5, delay: 0.14 }}
               className="mt-6 max-w-xl text-base leading-relaxed text-white/75 sm:text-lg"
             >
-              ASN connects event-ready speakers with on-demand talks—so organizations
-              preview the voice, fans build fluency, and athletes grow both pipelines.
+              Speaking, training, mentorship, appearances, sponsorships, and streaming—one premium
+              network for NFL-caliber athletes and the organizations that book them.
             </motion.p>
 
             <motion.div
-              initial={{ opacity: 0, y: 14 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.18 }}
-              className="mt-6"
+              transition={{ duration: 0.5, delay: 0.16 }}
+              className="mt-8 max-w-2xl"
             >
-              <p className="text-xs font-medium uppercase tracking-wider text-white/40">
-                Trusted by teams at
-              </p>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {partnerMarks.map((name) => (
-                  <span
-                    key={name}
-                    className="rounded-lg border border-white/10 bg-white/[0.04] px-3 py-1.5 text-xs font-semibold text-white/55"
-                  >
-                    {name}
-                  </span>
-                ))}
-              </div>
+              <GlassCard hover={false} className="overflow-hidden p-0 sm:grid sm:grid-cols-[140px_1fr]">
+                <div className="relative aspect-square sm:aspect-auto sm:min-h-[200px]">
+                  <Image
+                    src={spot.image}
+                    alt=""
+                    fill
+                    className="object-cover"
+                    sizes="200px"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy/80 to-transparent sm:bg-gradient-to-r" />
+                </div>
+                <div className="flex flex-col justify-center p-5 sm:p-6">
+                  <p className="text-xs font-medium uppercase tracking-wider text-accent">
+                    Spotlight
+                  </p>
+                  <h3 className="mt-1 text-lg font-bold text-white sm:text-xl">{spot.name}</h3>
+                  <p className="text-xs text-white/55">{spot.league}</p>
+                  <div className="mt-3 flex flex-wrap gap-1.5">
+                    {spot.servicesOffered.slice(0, 4).map((s) => (
+                      <span
+                        key={s}
+                        className="rounded-md border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] font-semibold text-white/75"
+                      >
+                        {SERVICE_LABELS[s]}
+                      </span>
+                    ))}
+                  </div>
+                  <p className="mt-3 text-sm text-white/60">
+                    From {money.format(spot.priceMin)} – {money.format(spot.priceMax)}
+                  </p>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    <Button
+                      variant="secondary"
+                      href={previewId ? `/watch/${previewId}` : "/watch"}
+                      className="!px-4 !py-2 text-sm"
+                    >
+                      <Play className="h-4 w-4" aria-hidden />
+                      Watch preview
+                    </Button>
+                    <Button
+                      variant="primary"
+                      href={`/book/${spot.slug}`}
+                      className="!px-4 !py-2 text-sm"
+                    >
+                      Book now
+                    </Button>
+                  </div>
+                </div>
+              </GlassCard>
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="mt-6 flex flex-wrap gap-3"
+              className="mt-8 flex flex-wrap gap-3"
             >
               <Button variant="primary" href="/athletes">
+                Book a Speaker
+              </Button>
+              <Button variant="secondary" href="/watch">
+                Watch Content
+              </Button>
+              <Button variant="secondary" href="/training">
+                Explore Training
+              </Button>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.22 }}
+              className="mt-4 flex flex-wrap gap-3"
+            >
+              <Button variant="ghost" href="/athletes">
                 For organizations
               </Button>
-              <Button variant="secondary" href="/dashboard">
+              <Button variant="ghost" href="/apply">
                 For athletes
               </Button>
             </motion.div>
@@ -144,7 +204,7 @@ export default function Hero() {
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.22 }}
+              transition={{ duration: 0.5, delay: 0.24 }}
             >
               <HeroSpeakerSearch />
             </motion.div>
@@ -152,14 +212,12 @@ export default function Hero() {
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.24 }}
+              transition={{ duration: 0.5, delay: 0.26 }}
               className="mt-8 grid max-w-md grid-cols-3 gap-4 border-y border-white/10 py-6"
             >
               {stats.map((s) => (
                 <div key={s.label} className="text-center sm:text-left">
-                  <p className="text-xl font-bold text-white sm:text-2xl">
-                    {s.value}
-                  </p>
+                  <p className="text-xl font-bold text-white sm:text-2xl">{s.value}</p>
                   <p className="text-xs text-white/50 sm:text-sm">{s.label}</p>
                 </div>
               ))}
@@ -168,18 +226,12 @@ export default function Hero() {
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.26 }}
+              transition={{ duration: 0.5, delay: 0.28 }}
               className="mt-8 flex flex-wrap items-center gap-3 sm:gap-4"
             >
-              <Button variant="primary" href="/book">
-                Start booking
-              </Button>
-              <Button variant="secondary" href="/watch">
-                Watch talks
-              </Button>
               <Link
                 href="/athletes"
-                className="hidden items-center gap-1.5 text-sm font-medium text-white/70 transition hover:text-white sm:inline-flex"
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-white/70 transition hover:text-white"
               >
                 <Mic2 className="h-4 w-4 text-accent" aria-hidden />
                 Browse marketplace

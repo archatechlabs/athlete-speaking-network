@@ -11,7 +11,10 @@ import type { UserRole } from "@/lib/types";
 const navLinks = [
   { href: "/athletes", label: "Athletes" },
   { href: "/watch", label: "Watch" },
-  { href: "/book", label: "Book" },
+  { href: "/training", label: "Training" },
+  { href: "/mentorship", label: "Mentorship" },
+  { href: "/appearances", label: "Brands" },
+  { href: "/apply", label: "Apply" },
   { href: "/dashboard", label: "Dashboard" },
   { href: "/#how-it-works", label: "How it works" },
 ];
@@ -41,7 +44,7 @@ export default function Navbar() {
           Athlete Network
         </Link>
 
-        <div className="hidden items-center gap-6 lg:flex">
+        <div className="hidden items-center gap-4 xl:flex">
           {navLinks.map((link) => (
             <Link
               key={link.href + link.label}
@@ -58,20 +61,21 @@ export default function Navbar() {
             id="nav-role"
             value={role}
             onChange={(e) => setRole(e.target.value as UserRole)}
-            className="h-9 rounded-lg border border-white/15 bg-navy-light/90 px-2 text-xs font-medium text-white outline-none focus:border-accent/40 focus:ring-2 focus:ring-accent/25"
+            className="h-9 max-w-[9.5rem] rounded-lg border border-white/15 bg-navy-light/90 px-2 text-xs font-medium text-white outline-none focus:border-accent/40 focus:ring-2 focus:ring-accent/25"
           >
-            <option value="viewer">Viewer</option>
+            <option value="subscriber">Subscriber</option>
             <option value="organization">Organization</option>
             <option value="athlete">Athlete</option>
+            <option value="admin">Admin</option>
           </select>
-          <Button variant="primary" href="/book">
-            Request booking
+          <Button variant="primary" href="/athletes">
+            Book
           </Button>
         </div>
 
         <button
           type="button"
-          className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg text-white/80 hover:bg-white/10 lg:hidden"
+          className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg text-white/80 hover:bg-white/10 xl:hidden"
           onClick={() => setMobileOpen((o) => !o)}
           aria-expanded={mobileOpen}
           aria-controls="mobile-primary-nav"
@@ -88,7 +92,7 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="max-h-[min(70vh,calc(100dvh-5rem))] overflow-y-auto overscroll-contain border-t border-white/5 bg-navy/95 backdrop-blur-xl lg:hidden"
+            className="max-h-[min(80vh,calc(100dvh-5rem))] overflow-y-auto overscroll-contain border-t border-white/5 bg-navy/95 backdrop-blur-xl xl:hidden"
           >
             <div className="flex flex-col gap-1 px-4 py-4 pb-[max(1rem,env(safe-area-inset-bottom,0px))]">
               {navLinks.map((link) => (
@@ -111,18 +115,19 @@ export default function Navbar() {
                   onChange={(e) => setRole(e.target.value as UserRole)}
                   className="mt-1 h-11 w-full rounded-xl border border-white/15 bg-navy-light px-3 text-sm text-white outline-none"
                 >
-                  <option value="viewer">Viewer</option>
+                  <option value="subscriber">Subscriber</option>
                   <option value="organization">Organization</option>
                   <option value="athlete">Athlete</option>
+                  <option value="admin">Admin</option>
                 </select>
               </div>
               <div className="pt-2">
                 <Link
-                  href="/book"
+                  href="/athletes"
                   onClick={() => setMobileOpen(false)}
                   className="inline-flex min-h-[48px] w-full items-center justify-center rounded-xl bg-accent px-6 text-base font-semibold text-white active:bg-accent-hover"
                 >
-                  Request booking
+                  Book
                 </Link>
               </div>
             </div>

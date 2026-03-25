@@ -32,7 +32,7 @@ export default function FeaturedAthletes() {
             transition={{ duration: 0.4, delay: i * 0.05 }}
           >
             <Link
-              href={`/athletes/${athlete.id}`}
+              href={`/athletes/${athlete.slug}`}
               className="group block h-full rounded-2xl outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-navy"
             >
               <div className="relative h-full overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md transition hover:scale-[1.02] hover:border-accent/25 hover:shadow-glow">
@@ -50,7 +50,7 @@ export default function FeaturedAthletes() {
                       {athlete.name}
                     </h3>
                     <p className="text-sm text-accent">
-                      {athlete.sport} | {athlete.topics[0]}
+                      {athlete.league} · {athlete.topics[0]}
                     </p>
                     <p className="mt-1 line-clamp-2 text-xs text-white/55">
                       {athlete.bio}

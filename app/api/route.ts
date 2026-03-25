@@ -8,6 +8,8 @@ export async function GET() {
       "GET /api": "This index",
       "GET /api/bookings": "List mock bookings (session store)",
       "POST /api/bookings": "Create a booking (JSON body: BookingPayload)",
+      "GET /api/applications": "List mock athlete applications",
+      "POST /api/applications": "Submit athlete application",
     },
   });
 }

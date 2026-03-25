@@ -20,19 +20,29 @@ type RoleContextValue = {
 
 const RoleContext = createContext<RoleContextValue | null>(null);
 
+function normalizeStoredRole(stored: string | null): UserRole | null {
+  if (
+    stored === "organization" ||
+    stored === "athlete" ||
+    stored === "subscriber" ||
+    stored === "admin"
+  ) {
+    return stored;
+  }
+  if (stored === "viewer") {
+    return "subscriber";
+  }
+  return null;
+}
+
 export function RoleProvider({ children }: { children: ReactNode }) {
-  const [role, setRoleState] = useState<UserRole>("viewer");
+  const [role, setRoleState] = useState<UserRole>("subscriber");
 
   useEffect(() => {
     try {
-      const stored = localStorage.getItem(STORAGE_KEY) as UserRole | null;
-      if (
-        stored === "organization" ||
-        stored === "athlete" ||
-        stored === "viewer"
-      ) {
-        setRoleState(stored);
-      }
+      const stored = localStorage.getItem(STORAGE_KEY);
+      const next = normalizeStoredRole(stored);
+      if (next) setRoleState(next);
     } catch {
       /* ignore */
     }

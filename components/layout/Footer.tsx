@@ -4,7 +4,10 @@ import Link from "next/link";
 const links = [
   { href: "/athletes", label: "Athletes" },
   { href: "/watch", label: "Watch" },
-  { href: "/book", label: "Book" },
+  { href: "/training", label: "Training" },
+  { href: "/mentorship", label: "Mentorship" },
+  { href: "/appearances", label: "Brands" },
+  { href: "/apply", label: "Apply" },
   { href: "/dashboard", label: "Dashboard" },
   { href: "/team", label: "Team" },
   { href: "/#how-it-works", label: "How it works" },
