@@ -1,0 +1,10 @@
+{
+  "name": "Athlete Speaking Network",
+  "short_name": "ASN",
+  "description": "Book athletes for events and stream exclusive speaker content.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0e1a",
+  "theme_color": "#0a0e1a",
+  "orientation": "portrait-primary"
+}
